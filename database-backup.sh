@@ -19,4 +19,16 @@ TIMESTAMP=$("date +%Y-%m-%d-%H-%M-%S")
 BACKUP_FILE="$BACKUP_DIR/backup-database-$TIMESTAMP.sql"
 
 # Perform backup using mysqldump
+echo "Backing up database $DB_NAME to $BACKUP_FILE..."
 mysqldump -u "$DB_USER" -p"$DB_PASS" "$DB_NAME" > "$BACKUP_FILE"
+
+# Check if backup succeeded
+if [ $? -eq 0 ]; then
+     echo "Backup completed successfully."
+     # Optional: compress the backup
+     gzip "$BACKUP_FILE"
+     echo "Backup compressed to $BACKUP_FILE.gz"
+else
+     echo "Backup failed!"
+     exit 1
+fi
