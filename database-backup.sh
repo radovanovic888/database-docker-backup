@@ -13,7 +13,7 @@ BACKUP_DIR="/path/to/backups"   # Directory to store backups
 mkdir -p "$BACKUP_DIR"
 
 # Generate timestamp
-TIMESTAMP=$("date +%Y-%m-%d-%H-%M-%S")
+TIMESTAMP=$(date +"%Y-%m-%d-%H-%M-%S")
 
 # Backup filename
 BACKUP_FILE="$BACKUP_DIR/backup-database-$TIMESTAMP.sql"
